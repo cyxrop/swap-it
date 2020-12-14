@@ -1,0 +1,20 @@
+.card-deck {
+    & .card {
+        max-width: 30%;
+    }
+
+    & a {
+        text-decoration: none;
+        color: #212529;
+
+        &:hover {
+            color: #212529;
+            text-decoration: none;
+        }
+
+        &:visited {
+            color: #212529;
+            text-decoration: none;
+        }
+    }
+}

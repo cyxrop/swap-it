@@ -1,0 +1,7 @@
+.si-card {
+    color: #212529 !important;
+
+    &--shadow:hover {
+        box-shadow: 5px 5px 15px 10px rgba(0, 0, 255, 0.1);
+    }
+}

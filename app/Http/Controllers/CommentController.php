@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\SiHelper;
 use App\Http\Requests\CommentRequest;
-use App\Models\Ad;
 use App\Models\Comment;
-use App\Models\Photo;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class CommentController extends Controller
 {
@@ -16,9 +16,10 @@ class CommentController extends Controller
      * New comment
      *
      * @param CommentRequest $req
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function createAction(CommentRequest $req) {
+    public function createAction(CommentRequest $req)
+    {
         $user = Auth::user();
 
         if (!$user || !$user->id) {
@@ -38,7 +39,7 @@ class CommentController extends Controller
     /**
      * Delete comment
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function deleteAction($id)
     {

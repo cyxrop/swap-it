@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SiHelper;
-use App\Models\Ad;
 use App\Http\Requests\AdRequest;
+use App\Models\Ad;
 use App\Models\Comment;
 use App\Models\Photo;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class AdController extends Controller
 {
@@ -24,7 +27,7 @@ class AdController extends Controller
      * New ad
      *
      * @param Request $req
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function createNewInstance(AdRequest $req)
     {
@@ -53,7 +56,7 @@ class AdController extends Controller
     /**
      * Show update form
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function update($id)
     {
@@ -83,7 +86,7 @@ class AdController extends Controller
     /**
      * Update ad
      * @param AdRequest $req
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function updateAction(AdRequest $req)
     {
@@ -91,7 +94,7 @@ class AdController extends Controller
             return redirect()->route('ad.list')->withErrors('Ad not found');
         }
         /** @var Ad $ad */
-        $ad = Ad::find((int) $req->id);
+        $ad = Ad::find((int)$req->id);
 
         if (!$ad) {
             return redirect()->route('ad.list')->withErrors('Ad not found');
@@ -117,6 +120,8 @@ class AdController extends Controller
 
     /**
      * List of ads
+     * @param Request $req
+     * @return Application|Factory|View
      */
     public function showAds(Request $req)
     {
@@ -166,7 +171,7 @@ class AdController extends Controller
     /**
      * Details of ad
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function adDetails($id)
     {
@@ -207,7 +212,7 @@ class AdController extends Controller
             });
 
         return view('ads.details', [
-            'isOwner' => (int) $ad->user->id == Auth::id(),
+            'isOwner' => (int)$ad->user->id == Auth::id(),
             'adData' => $adData,
             'comments' => $comments,
         ]);

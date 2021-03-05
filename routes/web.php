@@ -77,12 +77,9 @@ Route::post('/comments/delete/{id}', 'CommentController@deleteAction')
     ->name('comment.deleteAction')
     ->middleware('auth');;
 
-
-//Route::get('/', function () {
-//    return view('home');
-//})->name('auth.signup.get');
-
-
+/**
+ *  REGISTRATION ROUTES
+ */
 Route::get('/user/register', function () {
     return view('registration');
 })->name('user-register');
@@ -92,3 +89,6 @@ Route::post('/user/register', function () {
 })->name('user-register-result');
 
 //Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/', function () {
+//    return view('home');
+//})->name('auth.signup.get');

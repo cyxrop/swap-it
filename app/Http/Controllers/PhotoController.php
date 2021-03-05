@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\SiHelper;
 use App\Models\Photo;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class PhotoController extends Controller
 {
     /**
      * Delete photo
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function deleteAction($id)
     {
